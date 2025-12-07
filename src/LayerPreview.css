@@ -1,0 +1,124 @@
+.layer-preview {
+  --key-base-size: 12px;
+  --gap: 2px;
+  background: radial-gradient(circle at top, #020617 0, #020617 70%, #020617 100%);
+  border-radius: 18px;
+  border: 1px solid var(--border-subtle);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.layer-preview-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.layer-preview-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.mini-layer {
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 8px;
+  background: rgba(15, 23, 42, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: fit-content;
+  width: fit-content;
+}
+
+.mini-layer-header {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.mini-keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow-x: auto;
+  width: fit-content;
+}
+
+.mini-row {
+  display: flex;
+  gap: 2px;
+  flex-wrap: nowrap;
+  width: fit-content;
+}
+
+.mini-key {
+  flex: 0 0 auto;
+  height: 12px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 3px;
+  background: var(--status-free-bg);
+  border-color: var(--status-free-border);
+}
+
+.mini-empty {
+  flex: 0 0 auto;
+  height: 12px;
+  opacity: 0;
+}
+
+.mini-spacer {
+  flex: 0 0 3px;
+}
+
+.mini-key[data-status="free"] {
+  background: var(--status-free-bg);
+  border-color: var(--status-free-border);
+}
+
+.mini-key[data-status="used"] {
+  background: var(--status-used-bg);
+  border-color: var(--status-used-border);
+}
+
+.mini-key[data-status="fixed"],
+.mini-key[data-status="important"] {
+  background: var(--status-fixed-bg);
+  border-color: var(--status-fixed-border);
+}
+
+.mini-key[data-status="other"] {
+  background: var(--status-other-bg);
+  border-color: var(--status-other-border);
+}
+
+.mini-key.merge-left {
+  margin-left: calc(var(--gap) * -1);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: none;
+}
+
+.mini-key.merge-right {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
+}
+
+.mini-key.merge-top {
+  margin-top: calc(var(--gap) * -1);
+  height: calc(var(--key-base-size) + var(--gap));
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.mini-key.merge-bottom {
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
