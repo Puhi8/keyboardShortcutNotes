@@ -53,9 +53,9 @@ export function ensureKeyDataStructure(source, layout) {
    return merged
 }
 
-export function loadInitialState(defaultLayout) {
+export function loadInitialState(defaultLayout, defaultLayoutName = "full") {
    const defaultKeyData = createEmptyKeyData(defaultLayout)
-   let defaultProfiles = { default: { id: "default", name: "Default", keyData: defaultKeyData } }
+   let defaultProfiles = { default: { id: "default", name: "Default", keyData: defaultKeyData, layoutName: defaultLayoutName } }
    let currentProfileId = "default"
    let currentLayer = "base"
    if (typeof window === "undefined") return { profiles: defaultProfiles, currentProfileId, currentLayer }
@@ -72,7 +72,8 @@ export function loadInitialState(defaultLayout) {
             profiles[id] = {
                id,
                name: p.name || id,
-               keyData: ensureKeyDataStructure(p.keyData, defaultLayout)
+               keyData: ensureKeyDataStructure(p.keyData, defaultLayout),
+               layoutName: p.layoutName || defaultLayoutName
             }
          })
 
@@ -93,7 +94,8 @@ export function loadInitialState(defaultLayout) {
             default: {
                id: "default",
                name: "Imported",
-               keyData: ensureKeyDataStructure(parsed.keyData, defaultLayout)
+               keyData: ensureKeyDataStructure(parsed.keyData, defaultLayout),
+               layoutName: parsed.layoutName || defaultLayoutName
             }
          }
          const layerValid = LAYERS.some(l => l.id === parsed.currentLayer)

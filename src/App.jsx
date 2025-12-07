@@ -20,10 +20,20 @@ const STATUS_OPTIONS = [
 ]
 
 export default function App() {
-   const [currentLayoutName, setCurrentLayoutName] = useState("full")
+   const initialLoadRef = useRef(null)
+   if (!initialLoadRef.current) {
+      const defaultLayoutName = "full"
+      const defaultLayoutConfig = keyboardLayout[defaultLayoutName] || { layout: [] }
+      const initialState = loadInitialState(Array.isArray(defaultLayoutConfig) ? defaultLayoutConfig : defaultLayoutConfig.layout || [], defaultLayoutName)
+      initialLoadRef.current = {
+         state: initialState,
+         layoutName: initialState.profiles[initialState.currentProfileId]?.layoutName || defaultLayoutName
+      }
+   }
+   const [currentLayoutName, setCurrentLayoutName] = useState(initialLoadRef.current.layoutName)
    const layoutConfig = keyboardLayout[currentLayoutName] || { layout: [] }
    const layout = Array.isArray(layoutConfig) ? layoutConfig : layoutConfig.layout || []
-   const [appState, setAppState] = useState(() => loadInitialState(layout))
+   const [appState, setAppState] = useState(initialLoadRef.current.state)
    const [selectedKeyId, setSelectedKeyId] = useState(null)
    const [editorText, setEditorText] = useState("")
    const [editorStatus, setEditorStatus] = useState("free")
