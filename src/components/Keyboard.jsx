@@ -16,7 +16,9 @@ export default function Keyboard({ layout, keyDataState, currentLayer, onSelectK
                      text: "",
                      status: "free",
                   }
-                  const lines = (note.text || "").trim().split(/\n/)
+                  const lines = (note.text || "").split(/\n/)
+                  const line1 = (lines[0] || "").trim()
+                  const line2 = (lines[1] || "").trim()
                   const prev = row[i - 1]
                   const next = row[i + 1]
                   const mergeLeft = prev && !prev.spacer && !prev.empty && prev.id === key.id
@@ -48,8 +50,8 @@ export default function Keyboard({ layout, keyDataState, currentLayer, onSelectK
                      onClick={() => onSelectKey(key.id, key.label)}
                   >
                      <div className="kb-key-label">{key.label}</div>
-                     <div className="kb-key-main">{(note.text || "").trim().slice(0, 18) || ""}</div>
-                     <div className="kb-key-note">{lines.length > 1 ? lines[1].slice(0, 20) : ""}</div>
+                     <div className="kb-key-main">{line1.slice(0, 18)}</div>
+                     <div className="kb-key-note">{line2.slice(0, 20)}</div>
                      <span className="kb-key-status-dot" />
                   </button>
                })}
