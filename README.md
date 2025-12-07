@@ -10,3 +10,4 @@ Lightweight React/Vite app to document what every key does across layers and lay
 ## Use cases (download/offline)
 - Export your notes and share or restore them on another machine.
 - Build and install as a PWA/offline bundle from the production build (`dist`) if you want a download-and-use copy.
+- Can be used on it's [page](https://puhi8.github.io/keyboardShortcutNotes) (Note: it uses local storage to store the data)
